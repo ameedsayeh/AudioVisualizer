@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RecordingViewController: UIViewController {
 
@@ -44,8 +45,18 @@ class RecordingViewController: UIViewController {
         return view
     }()
     
+    var audioRecorder: AVAudioRecorder?
+    var isRecording: Bool = false {
+        
+        didSet {
+            self.recordButton.backgroundColor = isRecording ? UIColor.systemRed : UIColor.systemBlue
+        }
+    }
     
-    var isRecording: Bool = false
+    var meteringTimer: Timer?
+    // record value every 0.08 seconds.
+    var meteringFrequency = 0.08
+    
     weak var audioMeteringDelegate: AudioMeteringDelegate?
     
     override func viewDidLoad() {
@@ -53,8 +64,8 @@ class RecordingViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.view.backgroundColor = .white
+        self.audioMeteringDelegate = self.visualizerView
         
-        self.setupSubviews()
         self.addSubviews()
         self.setupLayout()
     }
@@ -79,11 +90,82 @@ class RecordingViewController: UIViewController {
         ])
     }
     
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    private func startRecording() {
+        
+        self.visualizerView.drawVisualizerCircles()
+        
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+
+        self.audioRecorder = try? AVAudioRecorder(url: audioFilename, settings: settings)
+        
+        self.audioRecorder?.prepareToRecord()
+        self.audioRecorder?.isMeteringEnabled = true
+        self.audioRecorder?.record()
+        
+        self.runMeteringTimer()
+    }
+    
+    private func stopRecording() {
+        
+        self.visualizerView.removeVisualizerCircles()
+        
+        self.audioRecorder?.stop()
+        self.audioRecorder = nil
+        
+        self.stopMeteringTimer()
+    }
+    
     @objc func didTapRecordButton() {
         
+        if isRecording {
+            self.stopRecording()
+        } else {
+            self.startRecording()
+        }
+        
+        self.isRecording.toggle()
     }
 }
 
+extension RecordingViewController {
+    
+    fileprivate func runMeteringTimer() {
+        
+        self.meteringTimer = Timer.scheduledTimer(withTimeInterval: self.meteringFrequency, repeats: true, block: { [weak self] (_) in
+            
+            guard let self = self else { return }
+            
+            self.audioRecorder?.updateMeters()
+            guard let averagePower = self.audioRecorder?.averagePower(forChannel: 0) else { return }
+            
+            // 1.1 to increase the feedback for low voice - due to noise cancellation.
+            let amplitude = 1.1 * pow(10.0, averagePower / 20.0)
+            let clampedAmplitude = min(max(amplitude, 0), 1)
+            
+            self.audioMeteringDelegate?.audioMeter(didUpdateAmplitude: clampedAmplitude)
+        })
+        
+        self.meteringTimer?.fire()
+    }
+    
+    fileprivate func stopMeteringTimer() {
+        
+        self.meteringTimer?.invalidate()
+        self.meteringTimer = nil
+    }
+}
 
 protocol AudioMeteringDelegate: NSObjectProtocol {
     
