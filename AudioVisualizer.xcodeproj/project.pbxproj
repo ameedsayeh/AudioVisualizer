@@ -8,22 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A32CF3C025F2AA810072D3F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CF3BF25F2AA810072D3F7 /* AppDelegate.swift */; };
-		A32CF3C225F2AA810072D3F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CF3C125F2AA810072D3F7 /* SceneDelegate.swift */; };
-		A32CF3C425F2AA810072D3F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CF3C325F2AA810072D3F7 /* ViewController.swift */; };
-		A32CF3C725F2AA810072D3F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A32CF3C525F2AA810072D3F7 /* Main.storyboard */; };
+		A32CF3C425F2AA810072D3F7 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32CF3C325F2AA810072D3F7 /* RecordingViewController.swift */; };
 		A32CF3C925F2AA820072D3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32CF3C825F2AA820072D3F7 /* Assets.xcassets */; };
-		A32CF3CC25F2AA820072D3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A32CF3CA25F2AA820072D3F7 /* LaunchScreen.storyboard */; };
+		A32CF3DA25F2B5090072D3F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A32CF3D925F2B5090072D3F7 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A32CF3BC25F2AA810072D3F7 /* AudioVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A32CF3BF25F2AA810072D3F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A32CF3C125F2AA810072D3F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A32CF3C325F2AA810072D3F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A32CF3C625F2AA810072D3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A32CF3C325F2AA810072D3F7 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		A32CF3C825F2AA820072D3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A32CF3CB25F2AA820072D3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A32CF3CD25F2AA820072D3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A32CF3D925F2B5090072D3F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +53,10 @@
 			isa = PBXGroup;
 			children = (
 				A32CF3BF25F2AA810072D3F7 /* AppDelegate.swift */,
-				A32CF3C125F2AA810072D3F7 /* SceneDelegate.swift */,
-				A32CF3C325F2AA810072D3F7 /* ViewController.swift */,
-				A32CF3C525F2AA810072D3F7 /* Main.storyboard */,
+				A32CF3C325F2AA810072D3F7 /* RecordingViewController.swift */,
 				A32CF3C825F2AA820072D3F7 /* Assets.xcassets */,
-				A32CF3CA25F2AA820072D3F7 /* LaunchScreen.storyboard */,
 				A32CF3CD25F2AA820072D3F7 /* Info.plist */,
+				A32CF3D925F2B5090072D3F7 /* Launch Screen.storyboard */,
 			);
 			path = AudioVisualizer;
 			sourceTree = "<group>";
@@ -124,9 +118,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A32CF3CC25F2AA820072D3F7 /* LaunchScreen.storyboard in Resources */,
+				A32CF3DA25F2B5090072D3F7 /* Launch Screen.storyboard in Resources */,
 				A32CF3C925F2AA820072D3F7 /* Assets.xcassets in Resources */,
-				A32CF3C725F2AA810072D3F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,32 +130,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A32CF3C425F2AA810072D3F7 /* ViewController.swift in Sources */,
+				A32CF3C425F2AA810072D3F7 /* RecordingViewController.swift in Sources */,
 				A32CF3C025F2AA810072D3F7 /* AppDelegate.swift in Sources */,
-				A32CF3C225F2AA810072D3F7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A32CF3C525F2AA810072D3F7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A32CF3C625F2AA810072D3F7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A32CF3CA25F2AA820072D3F7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A32CF3CB25F2AA820072D3F7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A32CF3CE25F2AA820072D3F7 /* Debug */ = {
